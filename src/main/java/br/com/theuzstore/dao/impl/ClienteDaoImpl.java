@@ -3,9 +3,14 @@ package br.com.theuzstore.dao.impl;
 import br.com.theuzstore.dao.ClienteDao;
 import br.com.theuzstore.model.entities.Cliente;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class ClienteDaoImpl implements ClienteDao {
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public void insert(Cliente cliente) {
 
