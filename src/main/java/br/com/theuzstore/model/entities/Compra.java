@@ -1,30 +1,40 @@
 package br.com.theuzstore.model.entities;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "compra")
 public class Compra implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_compra")
     private Integer id;
+    @Column(name = "valor")
     private Double valor;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data")
     private LocalDateTime data;
+    @Column(name = "observacao", length = 250)
     private String observacao;
-
-    private Cliente responsavel;
+    @ManyToOne
+    private Cliente cliente;
 
     public Compra() {
     }
 
-    public Compra(Integer id, Double valor, LocalDateTime data, String observacao, Cliente responsavel) {
+    public Compra(Integer id, Double valor, LocalDateTime data, String observacao, Cliente cliente) {
         this.id = id;
         this.valor = valor;
         this.data = data;
         this.observacao = observacao;
-        this.responsavel = responsavel;
+        this.cliente = cliente;
     }
 
     public Integer getId() {
@@ -59,12 +69,12 @@ public class Compra implements Serializable {
         this.observacao = observacao;
     }
 
-    public Cliente getResponsavel() {
-        return responsavel;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setResponsavel(Cliente responsavel) {
-        this.responsavel = responsavel;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -86,6 +96,6 @@ public class Compra implements Serializable {
                 " - Valor: " + valor +
                 " - Data: " + data +
                 " - Observação: " + observacao +
-                " - Responsavel: " + responsavel.getNome();
+                " - Cliente: " + cliente.getNome();
     }
 }
