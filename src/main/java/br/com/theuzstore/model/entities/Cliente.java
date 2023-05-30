@@ -1,20 +1,31 @@
 package br.com.theuzstore.model.entities;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "cliente")
 public class Cliente implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
     private Integer id;
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
+    @Column(name = "login", nullable = false, length = 20)
     private String login;
+    @Column(name = "email", nullable = false, length = 30)
     private String email;
+    @Column(name = "senha", nullable = false, length = 18)
     private String senha;
 
+    @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
     public Cliente() {
