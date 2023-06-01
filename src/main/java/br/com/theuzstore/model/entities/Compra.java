@@ -16,13 +16,16 @@ public class Compra implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_compra")
     private Integer id;
+
     @Column(name = "valor")
     private Double valor;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data")
+
+    @Column
     private LocalDateTime data;
+
     @Column(name = "observacao", length = 250)
     private String observacao;
+
     @ManyToOne
     private Cliente cliente;
 

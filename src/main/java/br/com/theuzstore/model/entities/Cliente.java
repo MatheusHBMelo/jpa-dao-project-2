@@ -16,12 +16,16 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Integer id;
+
     @Column(name = "nome", nullable = false, length = 50)
     private String nome;
+
     @Column(name = "login", nullable = false, length = 20)
     private String login;
+
     @Column(name = "email", nullable = false, length = 30)
     private String email;
+
     @Column(name = "senha", nullable = false, length = 18)
     private String senha;
 
